@@ -1,0 +1,52 @@
+.cards {
+	max-width: 1050px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	justify-items: center;
+	gap: 30px;
+
+	.card {
+		width: 150px;
+		height: 150px;
+
+		.inner {
+			width: 100%;
+			height: 100%;
+			transition: transform 0.8s;
+			transform-style: preserve-3d;
+			position: relative;
+
+			&:hover {
+				transform: rotateY(180deg);
+			}
+		}
+
+		.front,
+		.back {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility: hidden; /* Safari */
+			backface-visibility: hidden;
+			border-radius: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.front {
+			background: var(--mauve-l);
+		}
+
+		.back {
+			transform: rotateY(180deg);
+			border: var(--mauve-l) solid 2px;
+			background-color: var(--mauve-d);
+
+			img {
+				width: 40px;
+			}
+		}
+	}
+}

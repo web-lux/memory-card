@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Gloria+Hallelujah&display=swap");
+
+header {
+	font-family: "Gloria Hallelujah", sans-serif;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+
+	h1 {
+		font-family: "Cherry Bomb One", cursive;
+		font-weight: normal;
+		font-size: 72px;
+		color: transparent;
+		-webkit-text-stroke: var(--beige) 2px;
+		margin-bottom: 20px;
+		line-height: 80%;
+	}
+
+	.infos {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		p {
+			font-size: 16px;
+		}
+
+		.scoreboard {
+			display: flex;
+			flex-direction: column;
+			line-height: 120%;
+			font-size: 24px;
+
+			b {
+				color: var(--beige);
+				margin-right: 5px;
+				font-size: 18px;
+				font-weight: normal;
+			}
+		}
+	}
+}

@@ -1,0 +1,29 @@
+:root {
+	--white: #f3ebe4;
+	--beige: #ffbe77;
+	--mauve-l: #453247;
+	--mauve-d: #231429;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#root {
+	min-height: 100vh;
+	width: 100vw;
+	background: url(assets/background.png);
+	color: var(--white);
+}
+
+.wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	padding: 50px;
+}
