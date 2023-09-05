@@ -108,14 +108,14 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setbestScore] = useState(0);
 
-  function playGame(state) {
-    if (state === "loss") {
+  function playGame(hasWon) {
+    if (hasWon === "loss") {
       if (score > bestScore) {
-        setbestScore(score);
+        setbestScore(score)
       }
-      setScore(0);
+      setScore(0)
     } else {
-      setScore((prev) => prev + 1);
+      setScore((prev) => prev + 1) 
     }
   }
 

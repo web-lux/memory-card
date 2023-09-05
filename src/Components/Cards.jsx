@@ -2,12 +2,13 @@ import "./Cards.scss";
 import stars from "../assets/stars.png";
 import { useState } from "react";
 
-function Card({ creature, handleClick, cardOrder }) {
+function Card({ creature, handleClick, cardOrder, id }) {
 
     return (
         <div className="card"
             onClick={handleClick}
             style={{ order: cardOrder }}
+            id={id}
         >
             <div className="inner">
 				<div className="front">
@@ -52,16 +53,27 @@ export default function Cards({ creatures, playGame }) {
 
     }
 
+    const [selected, setSelected] = useState([]);
+
     const cards = creatures.map((x) => (
         <Card creature={
             creatures[creatures.indexOf(x)]}
             key={x.number}
             handleClick={handleClick}
             cardOrder={cardOrder[creatures.indexOf(x)]}
+            id={x.number}
         />));
 
     function handleClick(e) {
+        if (selected.includes(e.currentTarget.id)) {
+            playGame("loss");
+            setSelected([])
+        } else {
+            playGame();
+            setSelected([...selected, e.currentTarget.id])
+        }
         shuffle();
+        
     }
 
 	return (
