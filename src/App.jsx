@@ -102,14 +102,27 @@ function App() {
       // On réduit l'array reçu à 12 entrées pour les 12 cartes du jeu puis on l'assigne à la variable "creatures"
       setCreatures(await data.filter((obj) => data.indexOf(obj) < 12));
     }
-
     getData();
   }, []);
 
+  const [score, setScore] = useState(0);
+  const [bestScore, setbestScore] = useState(0);
+
+  function playGame(state) {
+    if (state === "loss") {
+      if (score > bestScore) {
+        setbestScore(score);
+      }
+      setScore(0);
+    } else {
+      setScore((prev) => prev + 1);
+    }
+  }
+
   return (
     <div className='wrapper'>
-      <Header />
-      <Cards creatures={creatures} />
+      <Header score={score} bestScore={bestScore} />
+      <Cards creatures={creatures} playGame={playGame} />
     </div>
   )
 }

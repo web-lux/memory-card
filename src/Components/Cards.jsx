@@ -1,11 +1,13 @@
 import "./Cards.scss";
 import stars from "../assets/stars.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function Card({ creature, handleClick }) {
-	return (
+function Card({ creature, handleClick, cardOrder }) {
+
+    return (
         <div className="card"
             onClick={handleClick}
+            style={{ order: cardOrder }}
         >
             <div className="inner">
 				<div className="front">
@@ -20,9 +22,11 @@ function Card({ creature, handleClick }) {
 	);
 }
 
-export default function Cards({ creatures, winGame }) {
+export default function Cards({ creatures, playGame }) {
+    const [cardOrder, setCardOrder] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
     function shuffle() {
+
         function shuffleArr(array) {
             let m = array.length;
             let t;
@@ -42,24 +46,19 @@ export default function Cards({ creatures, winGame }) {
             return array;
         }
 
-        let oldArr = [...cardsList];
-        let newArr = shuffleArr(oldArr);
-        setCards(newArr);
+        const initial = [...cardOrder];
+        const recent = shuffleArr(initial);
+        setCardOrder(recent);
+
     }
 
-    useEffect(() => {
-        setCards(cardsList);
-    }, [creatures]);
-
-    const cardsList = creatures.map((x) => (
+    const cards = creatures.map((x) => (
         <Card creature={
             creatures[creatures.indexOf(x)]}
             key={x.number}
             handleClick={handleClick}
-        />
-	));
-
-	const [cards, setCards] = useState(cardsList);
+            cardOrder={cardOrder[creatures.indexOf(x)]}
+        />));
 
     function handleClick(e) {
         shuffle();
@@ -67,18 +66,7 @@ export default function Cards({ creatures, winGame }) {
 
 	return (
 		<div>
-			<div className="cards">{cards}</div>
+            <div className="cards">{cards}</div>
 		</div>
 	);
 }
-
-/* 
-Le joueur clique sur une carte
-SI elle a déjà la data "click"
-    SI son score est plus élevé que son bestScore
-        bestScore = Score
-    son score retombe à 0
-SINON 
-    il gagne un point
-    le jeu se mélange
-*/
