@@ -1,3 +1,11 @@
+.active {
+	pointer-events: auto;
+}
+
+.inactive {
+	pointer-events: none;
+}
+
 .cards {
 	max-width: 1050px;
 	width: 100%;
@@ -9,17 +17,27 @@
 	.card {
 		width: 150px;
 		height: 150px;
+		border-radius: 25px;
 
 		.inner {
 			width: 100%;
 			height: 100%;
-			transition: transform 0.8s;
 			transform-style: preserve-3d;
 			position: relative;
 
-			// &:hover {
-			// 	transform: rotateY(180deg);
-			// }
+			&.shuffle {
+				animation-name: shuffle;
+				animation-duration: 0.8s;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+
+			&.unshuffle {
+				animation-name: unshuffle;
+				animation-duration: 0.8s;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
 		}
 
 		.front,
@@ -48,5 +66,25 @@
 				width: 40px;
 			}
 		}
+	}
+}
+
+@keyframes shuffle {
+	from {
+		transform: rotateY(0deg);
+	}
+
+	to {
+		transform: rotateY(180deg);
+	}
+}
+
+@keyframes unshuffle {
+	from {
+		transform: rotateY(180deg);
+	}
+
+	to {
+		transform: rotateY(0deg);
 	}
 }

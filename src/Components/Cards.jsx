@@ -1,16 +1,16 @@
 import "./Cards.scss";
 import stars from "../assets/stars.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Card({ creature, handleClick, cardOrder, id }) {
+function Card({ creature, handleClick, cardOrder, id, innerClass, cardClass }) {
 
     return (
-        <div className="card"
+        <div className={cardClass}
             onClick={handleClick}
             style={{ order: cardOrder }}
             id={id}
         >
-            <div className="inner">
+            <div className={innerClass}>
 				<div className="front">
 					<img src={creature.image_url} alt={creature.name} />
 				</div>
@@ -25,6 +25,8 @@ function Card({ creature, handleClick, cardOrder, id }) {
 
 export default function Cards({ creatures, playGame }) {
     const [cardOrder, setCardOrder] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    const [innerClass, setInnerClass] = useState("inner");
+    const [cardClass, setCardClass] = useState("card active");
 
     function shuffle() {
 
@@ -62,6 +64,8 @@ export default function Cards({ creatures, playGame }) {
             handleClick={handleClick}
             cardOrder={cardOrder[creatures.indexOf(x)]}
             id={x.number}
+            innerClass={innerClass}
+            cardClass={cardClass}
         />));
 
     function handleClick(e) {
@@ -72,8 +76,15 @@ export default function Cards({ creatures, playGame }) {
             playGame();
             setSelected([...selected, e.currentTarget.id])
         }
-        shuffle();
-        
+        setCardClass("card inactive")
+        setInnerClass("inner shuffle")
+        setTimeout(() => {
+            shuffle();
+            setInnerClass("inner unshuffle")
+        }, 1000)
+        setTimeout(() => {
+            setCardClass("card active")
+        }, 1500)
     }
 
 	return (
