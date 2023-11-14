@@ -1,8 +1,13 @@
-# React + Vite
+▶️ [Demo](https://memory-card-eosin.vercel.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📄 Description
 
-Currently, two official plugins are available:
+Un jeu de mémoire réalisé dans le cadre de l'[Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-memory-card) pour apprendre React. L'intérêt principal de cette application était de mettre en oeuvre un appel API : j'ai choisi d'utiliser [Nookipedia](https://api.nookipedia.com) pour récupérer les images des cartes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔨 Outils utilisés
+
+- HTML
+- CSS
+- SCSS
+- Javascript
+- React
